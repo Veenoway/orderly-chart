@@ -90,7 +90,7 @@ const MyComponent = () => {
 #### Animation & Other Options
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
-| height | number | 177 | Height of chart in pixels |
+| height | string | 177px | Height of chart |
 | enableAnimation | boolean | true | Enable/disable animations |
 | animationDuration | number | 750 | Duration of animations in ms |
 | enableNowLabel | boolean | true | Show/hide "now" label |
