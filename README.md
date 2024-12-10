@@ -22,7 +22,7 @@ yarn add @novee/orderly-charts chart.js
 ## Quick Start
 
 ```typescript
-import BarChart from "@novee/orderly-charts";
+import { BarChart } from "@novee/orderly-charts";
 
 const MyComponent = () => {
   const data = [
@@ -38,7 +38,7 @@ const MyComponent = () => {
     },
   ];
 
-  return <BarChart data={data} type="PnL" />;
+  return <BarChart height="300px" data={data} type="PnL" />;
 };
 ```
 
@@ -108,7 +108,7 @@ Here is an example of a "PnL" chart
 <BarChart
   data={data}
   type="PnL"
-  height={200}
+  height="300px"
   // Custom colors
   barPositiveColor="#00ff00"
   barNegativeColor="#ff0000"

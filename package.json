@@ -1,6 +1,6 @@
 {
   "name": "@novee/orderly-charts",
-  "version": "0.1.9",
+  "version": "0.2.4",
   "description": "A simple React charting library to implement PnL, Cumulative PnL and Volume visualization for Orderly Network",
   "author": "Novee",
   "license": "MIT",
@@ -33,13 +33,11 @@
     "prepublishOnly": "npm run build"
   },
   "peerDependencies": {
-    "chart.js": "^4.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "chart.js": "^4.0.0"
   },
   "devDependencies": {
-    "@types/react": "^18.2.0",
-    "@types/react-dom": "^18.2.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
     "@typescript-eslint/eslint-plugin": "^6.14.0",
     "@typescript-eslint/parser": "^6.14.0",
     "@vitejs/plugin-react": "^4.2.1",
@@ -49,6 +47,8 @@
     "vite-plugin-dts": "^4.3.0"
   },
   "dependencies": {
-    "clsx": "^2.0.0"
+    "clsx": "^2.0.0",
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0"
   }
 }
