@@ -4,19 +4,131 @@ import { BarChart } from "./components";
 
 const testData = [
   {
-    date: "2024-01-01",
-    pnl: 1000,
-    perp_volume: 5000,
+    date: "2024-02-01",
+    pnl: 2000,
+    perp_volume: 8000,
   },
   {
-    date: "2024-01-02",
+    date: "2024-02-02",
+    pnl: -300,
+    perp_volume: 4000,
+  },
+  {
+    date: "2024-02-03",
+    pnl: 2500,
+    perp_volume: 9000,
+  },
+  {
+    date: "2024-03-01",
+    pnl: 1200,
+    perp_volume: 6000,
+  },
+  {
+    date: "2024-03-02",
+    pnl: -800,
+    perp_volume: 3500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -300,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -600,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -1100,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-06-01",
+    pnl: 1600,
+    perp_volume: 7200,
+  },
+  {
+    date: "2024-06-02",
     pnl: -500,
-    perp_volume: 3000,
+    perp_volume: 4100,
   },
   {
-    date: "2024-01-03",
-    pnl: 1500,
-    perp_volume: 7000,
+    date: "2024-06-03",
+    pnl: 2200,
+    perp_volume: 8500,
+  },
+  {
+    date: "2024-07-01",
+    pnl: 1700,
+    perp_volume: 7300,
+  },
+  {
+    date: "2024-07-02",
+    pnl: -700,
+    perp_volume: 4300,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -300,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -600,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -1100,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -300,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -600,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: -1100,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: 100,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-02",
+    pnl: 300,
+    perp_volume: 4500,
+  },
+  {
+    date: "2024-09-03",
+    pnl: 2600,
+    perp_volume: 8900,
+  },
+  {
+    date: "2024-10-01",
+    pnl: 1900,
+    perp_volume: 7600,
+  },
+
+  {
+    date: "2024-11-03",
+    pnl: 2900,
+    perp_volume: 9300,
+  },
+
+  {
+    date: "2024-12-03",
+    pnl: 3000,
+    perp_volume: 9400,
   },
 ];
 
@@ -28,23 +140,11 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
         margin: "20px auto",
         background: "#1a1a1a",
         padding: 50,
+        fontFamily: "Arial",
       }}
     >
-      <h1 style={{ color: "white", padding: "20px" }}>Chart Demo</h1>
-      <BarChart
-        data={testData}
-        type="PnL"
-        height={"200px"}
-        barPositiveColor="#00ff00"
-        barNegativeColor="#ff0000"
-        tooltipBackground="rgba(0, 0, 0, 0.9)"
-        gridDisplay={true}
-        enableAnimation={true}
-        animationDuration={500}
-        axisFontSize={12}
-        enableNowLabel={true}
-        nowLabelColor="#FFF"
-      />
+      <h1 style={{ color: "white", padding: "20px" }}>Bar Chart Demo</h1>
+      <BarChart axisFontSize={14} data={testData} type="PnL" height={"300px"} />
     </div>
   </React.StrictMode>
 );

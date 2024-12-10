@@ -1,50 +1,143 @@
-# React + TypeScript + Vite
+# Orderly Charts
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React charting library for Orderly Network data visualization, built on top of Chart.js.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- PnL visualization
+- Volume charts
+- Customizable styling
+- Responsive design
+- Dark mode optimized
+- Typescript support
 
-## Expanding the ESLint configuration
+## Installation
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+```bash
+npm install @orderly/charts chart.js
+# or
+yarn add @orderly/charts chart.js
+```
 
-- Configure the top-level `parserOptions` property like this:
+## Quick Start
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
+```typescript
+import { BarChart } from "@orderly/charts";
+
+const MyComponent = () => {
+  const data = [
+    {
+      date: "2024-01-01",
+      pnl: 1000,
+      perp_volume: 5000,
     },
-  },
-})
+    {
+      date: "2024-01-02",
+      pnl: -500,
+      perp_volume: 3000,
+    },
+  ];
+
+  return <BarChart data={data} type="PnL" />;
+};
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Props
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Required Props
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+| Prop | Type                                    | Description                   |
+| ---- | --------------------------------------- | ----------------------------- |
+| data | `UserHistory[]`                         | Array of trading history data |
+| type | `"PnL" \| "Volume" \| "Cumulative PnL"` | Type of chart to display      |
+
+### Optional Styling Props
+
+#### Bar Customization
+
+| Prop             | Type   | Default           | Description               |
+| ---------------- | ------ | ----------------- | ------------------------- |
+| barPositiveColor | string | "rgb(14 203 129)" | Color for positive values |
+| barNegativeColor | string | "rgb(234 57 67)"  | Color for negative values |
+| barBorderWidth   | number | 1                 | Width of bar borders      |
+| barBorderRadius  | number | 4                 | Border radius of bars     |
+
+#### Tooltip Customization
+
+| Prop                | Type   | Default                 | Description                 |
+| ------------------- | ------ | ----------------------- | --------------------------- |
+| tooltipBackground   | string | "rgba(30, 30, 30, 0.8)" | Background color of tooltip |
+| tooltipTitleColor   | string | "#FFFFFF"               | Color of tooltip title      |
+| tooltipBodyColor    | string | "#FFFFFF"               | Color of tooltip body       |
+| tooltipBorderColor  | string | "#836EF9"               | Color of tooltip border     |
+| tooltipBorderWidth  | number | 1                       | Width of tooltip border     |
+| tooltipPadding      | number | 10                      | Padding inside tooltip      |
+| tooltipCornerRadius | number | 10                      | Border radius of tooltip    |
+
+#### Grid & Axis Customization
+
+| Prop           | Type    | Default                     | Description                |
+| -------------- | ------- | --------------------------- | -------------------------- |
+| gridDisplay    | boolean | false                       | Show/hide grid lines       |
+| gridColor      | string  | "rgba(255, 255, 255, 0.03)" | Color of grid lines        |
+| axisColor      | string  | "#FFFFFF60"                 | Color of axis labels       |
+| axisFontSize   | number  | 10                          | Font size of axis labels   |
+| axisFontFamily | string  | "Arial"                     | Font family of axis labels |
+| axisPadding    | number  | 5                           | Padding around axis        |
+
+#### Animation & Other Options
+
+| Prop              | Type    | Default     | Description                  |
+| ----------------- | ------- | ----------- | ---------------------------- |
+| height            | string  | 177px       | Height of chart              |
+| enableAnimation   | boolean | true        | Enable/disable animations    |
+| animationDuration | number  | 750         | Duration of animations in ms |
+| enableNowLabel    | boolean | true        | Show/hide "now" label        |
+| nowLabelColor     | string  | "#FFFFFF60" | Color of "now" label         |
+| nowLabelFontSize  | number  | 10          | Font size of "now" label     |
+
+## Advanced Usage
+
+```typescript
+<BarChart
+  data={data}
+  type="PnL"
+  height={200}
+  // Custom colors
+  barPositiveColor="#00ff00"
+  barNegativeColor="#ff0000"
+  // Custom tooltip
+  tooltipBackground="rgba(0, 0, 0, 0.9)"
+  tooltipBorderColor="#ff0000"
+  tooltipCornerRadius={15}
+  // Grid options
+  gridDisplay={true}
+  gridColor="rgba(255, 255, 255, 0.1)"
+  // Animation
+  enableAnimation={true}
+  animationDuration={500}
+  // Font customization
+  axisFontSize={12}
+  nowLabelColor="#ff0000"
+/>
 ```
+
+## Types
+
+```typescript
+interface UserHistory {
+  date: string;
+  pnl: number;
+  perp_volume: number;
+}
+
+type ChartType = "PnL" | "Volume" | "Cumulative PnL";
+```
+
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+MIT © 2024 Novee
