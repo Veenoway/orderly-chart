@@ -51,3 +51,55 @@ export interface ChartProps {
 }
 
 export type ChartType = "PnL" | "Volume" | "Cumulative PnL";
+
+export interface LineChartProps {
+  data: UserHistory[];
+  type: "PnL" | "Volume" | "Cumulative PnL";
+  // Dimensions
+  height?: string;
+
+  // Line styles
+  linePositiveColor?: string;
+  lineNegativeColor?: string;
+  lineWidth?: number;
+  lineTension?: number;
+
+  // Fill styles
+  fillPositiveColor?: string;
+  fillNegativeColor?: string;
+  fillOpacity?: number;
+
+  // Point styles
+  pointRadius?: number;
+  pointHoverRadius?: number;
+  pointBorderWidth?: number;
+  pointBorderColor?: string;
+
+  // Tooltip styles
+  tooltipBackground?: string;
+  tooltipTitleColor?: string;
+  tooltipBodyColor?: string;
+  tooltipBorderColor?: string;
+  tooltipBorderWidth?: number;
+  tooltipDisplayColors?: boolean;
+  tooltipPadding?: number;
+  tooltipCornerRadius?: number;
+
+  // Grid styles
+  gridDisplay?: boolean;
+  gridColor?: string;
+
+  // Axis styles
+  axisColor?: string;
+  axisFontSize?: number;
+  axisFontFamily?: string;
+  axisPadding?: number;
+
+  // Plugin options
+  enableNowLabel?: boolean;
+  nowLabelText?: string;
+
+  // Chart options
+  enableAnimation?: boolean;
+  animationDuration?: number;
+}

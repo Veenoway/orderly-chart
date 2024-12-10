@@ -21,6 +21,8 @@ yarn add @novee/orderly-charts chart.js
 
 ## Quick Start
 
+### Bar Chart
+
 ```typescript
 import { BarChart } from "@novee/orderly-charts";
 
@@ -42,11 +44,34 @@ const MyComponent = () => {
 };
 ```
 
+![Exemple de graphique PnL](./exemple-chart-bar.png)
+
+### Line Chart
+
+```typescript
+import { LineChart } from "@novee/orderly-charts";
+
+const MyComponent = () => {
+  const data = [
+    {
+      date: "2024-01-01",
+      pnl: 1000,
+      perp_volume: 5000,
+    },
+    {
+      date: "2024-01-02",
+      pnl: -500,
+      perp_volume: 3000,
+    },
+  ];
+
+  return <LineChart height="300px" data={data} type="PnL" />;
+};
+```
+
+![Exemple de graphique PnL](./exemple-line-chart.png)
+
 ## Exemple
-
-Here is an example of a "PnL" chart
-
-![Exemple de graphique PnL](./public/exemple-chart-bar.png)
 
 ## Props
 
@@ -125,6 +150,37 @@ Here is an example of a "PnL" chart
   // Font customization
   axisFontSize={12}
   nowLabelColor="#ff0000"
+/>
+```
+
+OR
+
+```
+<LineChart
+  data={lineData}
+  type="PnL"
+  linePositiveColor="rgb(255, 140, 0)"
+  lineNegativeColor="rgb(0, 122, 255)"
+  fillPositiveColor="rgba(255, 140, 0, 0.2)"
+  fillNegativeColor="rgba(0, 122, 255, 0.2)"
+  height="300px"
+  lineWidth={3}
+  lineTension={0.4}
+  pointHoverRadius={6}
+  pointBorderColor="#FFFFFF"
+  pointBorderWidth={2}
+  tooltipBackground="rgba(40, 44, 52, 0.95)"
+  tooltipBorderColor="#FF8C00"
+  tooltipBorderWidth={2}
+  tooltipCornerRadius={6}
+  tooltipPadding={12}
+  gridColor="rgba(255, 140, 0, 0.1)"
+  axisColor="#FFF"
+  axisFontSize={12}
+  enableAnimation={true}
+  animationDuration={1000}
+  enableNowLabel={true}
+  nowLabelText="CURRENT"
 />
 ```
 
