@@ -1,6 +1,3 @@
-Voici le format correct pour le README.md :
-
-```markdown
 # Orderly Charts
 
 A React charting library for Orderly Network data visualization, built on top of Chart.js.
