@@ -1,20 +1,31 @@
-Orderly Charts
+Voici le format correct pour le README.md :
+
+```markdown
+# Orderly Charts
+
 A React charting library for Orderly Network data visualization, built on top of Chart.js.
-Features
 
-PnL visualization
-Volume charts
-Customizable styling
-Responsive design
-Dark mode optimized
-Typescript support
+## Features
 
-Installation
-bashCopynpm install @orderly/charts chart.js
+- PnL visualization
+- Volume charts
+- Customizable styling
+- Responsive design
+- Dark mode optimized
+- Typescript support
+
+## Installation
+
+```bash
+npm install @orderly/charts chart.js
 # or
 yarn add @orderly/charts chart.js
-Quick Start
-typescriptCopyimport { BarChart } from '@orderly/charts';
+```
+
+## Quick Start
+
+```typescript
+import { BarChart } from '@orderly/charts';
 
 const MyComponent = () => {
   const data = [
@@ -37,20 +48,62 @@ const MyComponent = () => {
     />
   );
 };
-Props
-Required Props
-PropTypeDescriptiondataUserHistory[]Array of trading history datatype"PnL" | "Volume" | "Cumulative PnL"Type of chart to display
-Optional Styling Props
-Bar Customization
-PropTypeDefaultDescriptionbarPositiveColorstring"rgb(14 203 129)"Color for positive valuesbarNegativeColorstring"rgb(234 57 67)"Color for negative valuesbarBorderWidthnumber1Width of bar bordersbarBorderRadiusnumber4Border radius of bars
-Tooltip Customization
-PropTypeDefaultDescriptiontooltipBackgroundstring"rgba(30, 30, 30, 0.8)"Background color of tooltiptooltipTitleColorstring"#FFFFFF"Color of tooltip titletooltipBodyColorstring"#FFFFFF"Color of tooltip bodytooltipBorderColorstring"#836EF9"Color of tooltip bordertooltipBorderWidthnumber1Width of tooltip bordertooltipPaddingnumber10Padding inside tooltiptooltipCornerRadiusnumber10Border radius of tooltip
-Grid & Axis Customization
-PropTypeDefaultDescriptiongridDisplaybooleanfalseShow/hide grid linesgridColorstring"rgba(255, 255, 255, 0.03)"Color of grid linesaxisColorstring"#FFFFFF60"Color of axis labelsaxisFontSizenumber10Font size of axis labelsaxisFontFamilystring"Arial"Font family of axis labelsaxisPaddingnumber5Padding around axis
-Animation & Other Options
-PropTypeDefaultDescriptionheightnumber177Height of chart in pixelsenableAnimationbooleantrueEnable/disable animationsanimationDurationnumber750Duration of animations in msenableNowLabelbooleantrueShow/hide "now" labelnowLabelColorstring"#FFFFFF60"Color of "now" labelnowLabelFontSizenumber10Font size of "now" label
-Advanced Usage
-typescriptCopy<BarChart 
+```
+
+## Props
+
+### Required Props
+
+| Prop | Type | Description |
+|------|------|-------------|
+| data | `UserHistory[]` | Array of trading history data |
+| type | `"PnL" \| "Volume" \| "Cumulative PnL"` | Type of chart to display |
+
+### Optional Styling Props
+
+#### Bar Customization
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| barPositiveColor | string | "rgb(14 203 129)" | Color for positive values |
+| barNegativeColor | string | "rgb(234 57 67)" | Color for negative values |
+| barBorderWidth | number | 1 | Width of bar borders |
+| barBorderRadius | number | 4 | Border radius of bars |
+
+#### Tooltip Customization
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| tooltipBackground | string | "rgba(30, 30, 30, 0.8)" | Background color of tooltip |
+| tooltipTitleColor | string | "#FFFFFF" | Color of tooltip title |
+| tooltipBodyColor | string | "#FFFFFF" | Color of tooltip body |
+| tooltipBorderColor | string | "#836EF9" | Color of tooltip border |
+| tooltipBorderWidth | number | 1 | Width of tooltip border |
+| tooltipPadding | number | 10 | Padding inside tooltip |
+| tooltipCornerRadius | number | 10 | Border radius of tooltip |
+
+#### Grid & Axis Customization
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| gridDisplay | boolean | false | Show/hide grid lines |
+| gridColor | string | "rgba(255, 255, 255, 0.03)" | Color of grid lines |
+| axisColor | string | "#FFFFFF60" | Color of axis labels |
+| axisFontSize | number | 10 | Font size of axis labels |
+| axisFontFamily | string | "Arial" | Font family of axis labels |
+| axisPadding | number | 5 | Padding around axis |
+
+#### Animation & Other Options
+| Prop | Type | Default | Description |
+|------|------|---------|-------------|
+| height | number | 177 | Height of chart in pixels |
+| enableAnimation | boolean | true | Enable/disable animations |
+| animationDuration | number | 750 | Duration of animations in ms |
+| enableNowLabel | boolean | true | Show/hide "now" label |
+| nowLabelColor | string | "#FFFFFF60" | Color of "now" label |
+| nowLabelFontSize | number | 10 | Font size of "now" label |
+
+## Advanced Usage
+
+```typescript
+<BarChart 
   data={data}
   type="PnL"
   height={200}
@@ -71,15 +124,24 @@ typescriptCopy<BarChart
   axisFontSize={12}
   nowLabelColor="#ff0000"
 />
-Types
-typescriptCopyinterface UserHistory {
+```
+
+## Types
+
+```typescript
+interface UserHistory {
   date: string;
   pnl: number;
   perp_volume: number;
 }
 
 type ChartType = "PnL" | "Volume" | "Cumulative PnL";
-Contributing
+```
+
+## Contributing
+
 Contributions are welcome! Please feel free to submit a Pull Request.
-License
-MIT © [Orderly Network]
+
+## License
+
+MIT © 2024 Novee
