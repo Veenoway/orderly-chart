@@ -14,15 +14,15 @@ A React charting library for Orderly Network data visualization, built on top of
 ## Installation
 
 ```bash
-npm install @orderly/charts chart.js
+npm install @novee/orderly-charts chart.js
 # or
-yarn add @orderly/charts chart.js
+yarn add @novee/orderly-charts chart.js
 ```
 
 ## Quick Start
 
 ```typescript
-import { BarChart } from "@orderly/charts";
+import BarChart from "@novee/orderly-charts";
 
 const MyComponent = () => {
   const data = [
