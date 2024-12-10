@@ -42,6 +42,12 @@ const MyComponent = () => {
 };
 ```
 
+## Exemple
+
+Here is an example of a "PnL" chart
+
+![Exemple de graphique PnL](./public/exemple-chart-bar.png)
+
 ## Props
 
 ### Required Props
