@@ -1,17 +1,22 @@
 # Orderly Charts
 
-A React charting library for Orderly Network data visualization, built on top of Chart.js.
+A powerful React charting library designed for Orderly Network data visualization.
+Built on Chart.js, this library provides elegant, interactive, and customizable charts optimized for financial data display.
 
 ## Features
 
-- PnL visualization
-- Volume charts
-- Customizable styling
-- Responsive design
-- Dark mode optimized
-- Typescript support
+Our library offers a comprehensive set of features tailored for financial data visualization:
+
+- Fully customizable styling to match your application's theme
+- Responsive design that adapts to any screen size
+- Dark mode optimization for better visibility
+- Complete TypeScript support for enhanced development experience
+- Smooth animations and transitions
+- Interactive tooltips with detailed data display
 
 ## Installation
+
+Install the package and its peer dependency using your preferred package manager:
 
 ```bash
 npm install @novee/orderly-charts chart.js
@@ -19,186 +24,228 @@ npm install @novee/orderly-charts chart.js
 yarn add @novee/orderly-charts chart.js
 ```
 
-## Quick Start
+## Components
 
-### Bar Chart
+### Line Chart Component
 
-```typescript
-import { BarChart } from "@novee/orderly-charts";
+The LineChart component provides a flexible way to visualize time-series data with customizable data types. This component is particularly useful for displaying financial or performance metrics over time.
 
-const MyComponent = () => {
-  const data = [
-    {
-      date: "2024-01-01",
-      pnl: 1000,
-      perp_volume: 5000,
-    },
-    {
-      date: "2024-01-02",
-      pnl: -500,
-      perp_volume: 3000,
-    },
-  ];
+#### Component Usage
 
-  return <BarChart height="300px" data={data} type="PnL" />;
-};
-```
+The LineChart component accepts three key props:
 
-![Exemple de graphique PnL](./exemple-chart-bar.png)
+- `height`: Defines the chart height (e.g., "300px")
+- `data`: An array of data points containing a date and value pairs
+- `type`: A string identifier for the data being displayed, used in tooltips and labels
 
-### Line Chart
+#### Data Structure
+
+Your data array should contain objects with at least two properties:
+
+1. A `date` field in "YYYY-MM-DD" format
+2. A value field whose name matches the `type` prop (case-insensitive)
+
+For example, if you're tracking PnL (Profit and Loss), your data structure would look like this:
 
 ```typescript
-import { LineChart } from "@novee/orderly-charts";
-
-const MyComponent = () => {
-  const data = [
-    {
-      date: "2024-01-01",
-      pnl: 1000,
-      perp_volume: 5000,
-    },
-    {
-      date: "2024-01-02",
-      pnl: -500,
-      perp_volume: 3000,
-    },
-  ];
-
-  return <LineChart height="300px" data={data} type="PnL" />;
-};
+const data = [
+  {
+    date: "2024-01-01",
+    pnl: 1000,
+  },
+  {
+    date: "2024-01-02",
+    pnl: -500,
+  },
+];
 ```
 
-![Exemple de graphique PnL](./exemple-line-chart.png)
+#### Type Prop Flexibility
 
-## Exemple
+The `type` prop is case-insensitive, meaning both the following examples will work:
 
-## Props
+```typescript
+<LineChart type="pnl" ... />
+<LineChart type="PNL" ... />
+```
 
-### Required Props
+However, it's important to ensure that the type string matches your data property name (ignoring case). The specified type will be used in tooltips and chart labels, so choose a display-friendly format like "PnL" for better readability.
 
-| Prop | Type                                    | Description                   |
-| ---- | --------------------------------------- | ----------------------------- |
-| data | `UserHistory[]`                         | Array of trading history data |
-| type | `"PnL" \| "Volume" \| "Cumulative PnL"` | Type of chart to display      |
+### Bar Chart Component
 
-### Optional Styling Props
+The BarChart component provides an intuitive way to visualize discrete data points over time, making it especially suitable for financial metrics, trading volumes, and comparative analysis.
 
-#### Bar Customization
+#### Component Usage
 
-| Prop             | Type   | Default           | Description               |
-| ---------------- | ------ | ----------------- | ------------------------- |
-| barPositiveColor | string | "rgb(14 203 129)" | Color for positive values |
-| barNegativeColor | string | "rgb(234 57 67)"  | Color for negative values |
-| barBorderWidth   | number | 1                 | Width of bar borders      |
-| barBorderRadius  | number | 4                 | Border radius of bars     |
+The BarChart component requires three essential props:
 
-#### Tooltip Customization
+- `height`: Determines the vertical size of your chart (for example, "300px")
+- `data`: Takes an array of data points where each point contains date and value information
+- `type`: Indicates what kind of data you're displaying, which affects tooltips and labels
 
-| Prop                | Type   | Default                 | Description                 |
-| ------------------- | ------ | ----------------------- | --------------------------- |
-| tooltipBackground   | string | "rgba(30, 30, 30, 0.8)" | Background color of tooltip |
-| tooltipTitleColor   | string | "#FFFFFF"               | Color of tooltip title      |
-| tooltipBodyColor    | string | "#FFFFFF"               | Color of tooltip body       |
-| tooltipBorderColor  | string | "#836EF9"               | Color of tooltip border     |
-| tooltipBorderWidth  | number | 1                       | Width of tooltip border     |
-| tooltipPadding      | number | 10                      | Padding inside tooltip      |
-| tooltipCornerRadius | number | 10                      | Border radius of tooltip    |
+#### Data Structure
 
-#### Grid & Axis Customization
+Your data needs to follow a specific structure to work properly with the BarChart. Each object in your data array must include:
 
-| Prop           | Type    | Default                     | Description                |
-| -------------- | ------- | --------------------------- | -------------------------- |
-| gridDisplay    | boolean | false                       | Show/hide grid lines       |
-| gridColor      | string  | "rgba(255, 255, 255, 0.03)" | Color of grid lines        |
-| axisColor      | string  | "#FFFFFF60"                 | Color of axis labels       |
-| axisFontSize   | number  | 10                          | Font size of axis labels   |
-| axisFontFamily | string  | "Arial"                     | Font family of axis labels |
-| axisPadding    | number  | 5                           | Padding around axis        |
+1. A `date` field formatted as "YYYY-MM-DD"
+2. A value field that corresponds to your chosen `type` prop
 
-#### Animation & Other Options
+Here's a practical example for tracking trading volume:
 
-| Prop              | Type    | Default     | Description                  |
-| ----------------- | ------- | ----------- | ---------------------------- |
-| height            | string  | 177px       | Height of chart              |
-| enableAnimation   | boolean | true        | Enable/disable animations    |
-| animationDuration | number  | 750         | Duration of animations in ms |
-| enableNowLabel    | boolean | true        | Show/hide "now" label        |
-| nowLabelColor     | string  | "#FFFFFF60" | Color of "now" label         |
-| nowLabelFontSize  | number  | 10          | Font size of "now" label     |
+```typescript
+const data = [
+  {
+    date: "2024-01-01",
+    volume: 5000,
+  },
+  {
+    date: "2024-01-02",
+    volume: 3000,
+  },
+];
+```
 
-## Advanced Usage
+#### Type Prop Flexibility
+
+The BarChart component is designed to be flexible with naming conventions. The `type` prop is case-insensitive, which means all these variations will work:
+
+```typescript
+<BarChart type="volume" ... />
+<BarChart type="Volume" ... />
+<BarChart type="VOLUME" ... />
+```
+
+## Type Definitions
+
+### UserHistory Interface
+
+```typescript
+export interface UserHistory {
+  // Required date field for time-series data
+  date: string;
+
+  // Dynamic fields support for various metrics
+  [key: string]: number | string;
+}
+```
+
+### Chart Props
+
+Both chart types share several customization options through props:
+
+```typescript
+export interface ChartProps {
+  // Required props
+  data: UserHistory[]; // Array of data points
+  type: string; // Metric to display (e.g., "PnL", "Volume")
+  height: string; // Chart height (e.g., "300px")
+
+  // Bar styling
+  barPositiveColor?: string; // Color for positive values (default: "rgb(14 203 129)")
+  barNegativeColor?: string; // Color for negative values (default: "rgb(234 57 67)")
+  barBorderWidth?: number; // Width of bar borders (default: 1)
+  barBorderRadius?: number; // Border radius of bars (default: 4)
+
+  // Tooltip configuration
+  tooltipBackground?: string; // Background color (default: rgba(30, 30, 30, 0.8))
+  tooltipTitleColor?: string; // Title text color
+  tooltipBodyColor?: string; // Body text color
+  tooltipBorderColor?: string; // Border color
+  tooltipBorderWidth?: number; // Border width
+  tooltipDisplayColors?: boolean; // Show/hide color indicators
+  tooltipPadding?: number; // Internal padding
+  tooltipCornerRadius?: number; // Border radius
+
+  // Grid and axis styling
+  gridDisplay?: boolean; // Show/hide gridlines
+  gridColor?: string; // Grid line color
+  axisColor?: string; // Axis label color
+  axisFontSize?: number; // Axis label size
+  axisFontFamily?: string; // Axis label font
+  axisPadding?: number; // Axis padding
+
+  // Animation and features
+  enableAnimation?: boolean; // Enable/disable animations
+  animationDuration?: number; // Animation duration in ms
+  enableNowLabel?: boolean; // Show/hide current time marker
+  nowLabelColor?: string; // Marker color
+  nowLabelFontSize?: number; // Marker text size
+}
+```
+
+### Line Chart Specific Props
+
+```typescript
+export interface LineChartProps extends ChartProps {
+  // Line styling
+  linePositiveColor?: string; // Color for positive trend line
+  lineNegativeColor?: string; // Color for negative trend line
+  lineWidth?: number; // Line thickness (default: 2)
+  lineTension?: number; // Line smoothing (0-1, default: 0.4)
+
+  // Fill styling
+  fillPositiveColor?: string; // Area fill color above zero
+  fillNegativeColor?: string; // Area fill color below zero
+  fillOpacity?: number; // Fill transparency (0-1)
+
+  // Point styling
+  pointRadius?: number; // Size of data points
+  pointHoverRadius?: number; // Size of points on hover
+  pointBorderWidth?: number; // Width of point borders
+  pointBorderColor?: string; // Color of point borders
+
+  // Additional options
+  nowLabelText?: string; // Custom text for current time marker
+}
+```
+
+## Exemple:
+
+![Exemple de graphique PnL](./public/exemple-line-chart.png)
+
+![Exemple de graphique PnL](./public/exemple-chart-bar.png)
+
+## Advanced Usage Examples
+
+### Customized Bar Chart
 
 ```typescript
 <BarChart
   data={data}
-  type="PnL"
+  type="Trading Volume"
   height="300px"
-  // Custom colors
-  barPositiveColor="#00ff00"
-  barNegativeColor="#ff0000"
-  // Custom tooltip
-  tooltipBackground="rgba(0, 0, 0, 0.9)"
-  tooltipBorderColor="#ff0000"
-  tooltipCornerRadius={15}
-  // Grid options
+  barPositiveColor="rgba(76, 175, 80, 0.8)"
+  barNegativeColor="rgba(244, 67, 54, 0.8)"
+  barBorderWidth={2}
+  barBorderRadius={6}
+  tooltipBackground="rgba(33, 33, 33, 0.95)"
+  tooltipBorderColor="#4CAF50"
   gridDisplay={true}
-  gridColor="rgba(255, 255, 255, 0.1)"
-  // Animation
   enableAnimation={true}
-  animationDuration={500}
-  // Font customization
-  axisFontSize={12}
-  nowLabelColor="#ff0000"
 />
 ```
 
-OR
+### Customized Line Chart
 
-```
+```typescript
 <LineChart
   data={lineData}
   type="PnL"
+  height="300px"
   linePositiveColor="rgb(255, 140, 0)"
   lineNegativeColor="rgb(0, 122, 255)"
   fillPositiveColor="rgba(255, 140, 0, 0.2)"
   fillNegativeColor="rgba(0, 122, 255, 0.2)"
-  height="300px"
   lineWidth={3}
   lineTension={0.4}
-  pointHoverRadius={6}
-  pointBorderColor="#FFFFFF"
-  pointBorderWidth={2}
-  tooltipBackground="rgba(40, 44, 52, 0.95)"
   tooltipBorderColor="#FF8C00"
-  tooltipBorderWidth={2}
-  tooltipCornerRadius={6}
-  tooltipPadding={12}
-  gridColor="rgba(255, 140, 0, 0.1)"
-  axisColor="#FFF"
-  axisFontSize={12}
   enableAnimation={true}
-  animationDuration={1000}
-  enableNowLabel={true}
-  nowLabelText="CURRENT"
 />
-```
-
-## Types
-
-```typescript
-interface UserHistory {
-  date: string;
-  pnl: number;
-  perp_volume: number;
-}
-
-type ChartType = "PnL" | "Volume" | "Cumulative PnL";
 ```
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit a Pull Request.
+We welcome contributions from the community! Please feel free to submit a Pull Request.
 
 ## License
 
