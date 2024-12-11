@@ -44,7 +44,7 @@ const MyComponent = () => {
 };
 ```
 
-![Exemple de graphique PnL](./exemple-chart-bar.png)
+![Exemple de graphique PnL](./public/exemple-chart-bar.png)
 
 ### Line Chart
 
@@ -69,7 +69,7 @@ const MyComponent = () => {
 };
 ```
 
-![Exemple de graphique PnL](./exemple-line-chart.png)
+![Exemple de graphique PnL](./public/exemple-line-chart.png)
 
 ## Exemple
 
