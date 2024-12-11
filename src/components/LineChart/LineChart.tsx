@@ -4,7 +4,7 @@ import { LineChartProps } from "src/types";
 
 export const LineChart = ({
   data,
-  type,
+  type: typeBuffer,
   // Dimensions
   height = "177px",
 
@@ -53,6 +53,7 @@ export const LineChart = ({
   enableAnimation = true,
   animationDuration = 750,
 }: LineChartProps) => {
+  const type = typeBuffer.toLocaleLowerCase();
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -62,18 +63,7 @@ export const LineChart = ({
   );
 
   const chartData = useMemo(
-    () =>
-      data?.map((entry) => {
-        switch (type) {
-          case "PnL":
-          case "Cumulative PnL":
-            return entry.pnl;
-          case "Volume":
-            return entry.perp_volume;
-          default:
-            return entry.pnl;
-        }
-      }) || [],
+    () => data?.map((entry) => entry?.[type]) || [],
     [data, type]
   );
 
@@ -91,16 +81,24 @@ export const LineChart = ({
         0,
         chart.chartArea.bottom
       );
-      const centerPoint = chart.scales.y.getPixelForValue(0);
-      const totalHeight = chart.chartArea.bottom - chart.chartArea.top;
 
-      const greenStop = (centerPoint - chart.chartArea.top) / totalHeight;
-      const redStop = (centerPoint - chart.chartArea.top) / totalHeight;
+      const zeroLineY = chart.scales.y.getPixelForValue(0);
+      const chartBottom = chart.chartArea.bottom;
+      const chartTop = chart.chartArea.top;
 
-      gradient.addColorStop(0, fillPositiveColor);
-      gradient.addColorStop(greenStop, fillPositiveColor);
-      gradient.addColorStop(redStop, fillNegativeColor);
-      gradient.addColorStop(1, fillNegativeColor);
+      if (zeroLineY >= chartBottom) {
+        gradient.addColorStop(0, fillPositiveColor);
+        gradient.addColorStop(1, fillPositiveColor);
+      } else if (zeroLineY <= chartTop) {
+        gradient.addColorStop(0, fillNegativeColor);
+        gradient.addColorStop(1, fillNegativeColor);
+      } else {
+        const zeroRatio = (zeroLineY - chartTop) / (chartBottom - chartTop);
+        gradient.addColorStop(0, fillPositiveColor);
+        gradient.addColorStop(zeroRatio, fillPositiveColor);
+        gradient.addColorStop(zeroRatio, fillNegativeColor);
+        gradient.addColorStop(1, fillNegativeColor);
+      }
 
       return gradient;
     };
@@ -115,16 +113,24 @@ export const LineChart = ({
         0,
         chart.chartArea.bottom
       );
-      const centerPoint = chart.scales.y.getPixelForValue(0);
-      const totalHeight = chart.chartArea.bottom - chart.chartArea.top;
 
-      const greenStop = (centerPoint - chart.chartArea.top) / totalHeight;
-      const redStop = (centerPoint - chart.chartArea.top) / totalHeight;
+      const zeroLineY = chart.scales.y.getPixelForValue(0);
+      const chartBottom = chart.chartArea.bottom;
+      const chartTop = chart.chartArea.top;
 
-      gradient.addColorStop(0, linePositiveColor);
-      gradient.addColorStop(greenStop, linePositiveColor);
-      gradient.addColorStop(redStop, lineNegativeColor);
-      gradient.addColorStop(1, lineNegativeColor);
+      if (zeroLineY >= chartBottom) {
+        gradient.addColorStop(0, linePositiveColor);
+        gradient.addColorStop(1, linePositiveColor);
+      } else if (zeroLineY <= chartTop) {
+        gradient.addColorStop(0, lineNegativeColor);
+        gradient.addColorStop(1, lineNegativeColor);
+      } else {
+        const zeroRatio = (zeroLineY - chartTop) / (chartBottom - chartTop);
+        gradient.addColorStop(0, linePositiveColor);
+        gradient.addColorStop(zeroRatio, linePositiveColor);
+        gradient.addColorStop(zeroRatio, lineNegativeColor);
+        gradient.addColorStop(1, lineNegativeColor);
+      }
 
       return gradient;
     };
@@ -188,7 +194,9 @@ export const LineChart = ({
             pointHoverRadius: pointHoverRadius,
             pointHoverBackgroundColor: function (context) {
               const value = chartData[context.dataIndex];
-              return value >= 0 ? linePositiveColor : lineNegativeColor;
+              return (value as number) >= 0
+                ? linePositiveColor
+                : lineNegativeColor;
             },
             pointHoverBorderColor: pointBorderColor,
             pointHoverBorderWidth: pointBorderWidth,

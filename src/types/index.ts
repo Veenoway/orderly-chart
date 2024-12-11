@@ -1,14 +1,13 @@
 export interface UserHistory {
   date: string;
-  pnl: number;
-  perp_volume: number;
+  [key: string]: number | string;
 }
 
 export interface ChartProps {
   data: UserHistory[];
-  type: "PnL" | "Volume" | "Cumulative PnL";
+  type: string;
   // Dimensions
-  height?: string;
+  height: string;
 
   // Bar styles
   barPositiveColor?: string;
@@ -50,13 +49,11 @@ export interface ChartProps {
   animationDuration?: number;
 }
 
-export type ChartType = "PnL" | "Volume" | "Cumulative PnL";
-
 export interface LineChartProps {
   data: UserHistory[];
-  type: "PnL" | "Volume" | "Cumulative PnL";
+  type: string;
   // Dimensions
-  height?: string;
+  height: string;
 
   // Line styles
   linePositiveColor?: string;

@@ -33,11 +33,11 @@ const testData = [
 ];
 
 const lineData = [
-  { date: "2024-01-01", pnl: 1000, perp_volume: 5000 },
-  { date: "2024-01-02", pnl: -500, perp_volume: 3000 },
-  { date: "2024-01-03", pnl: 1500, perp_volume: 7000 },
-  { date: "2024-01-04", pnl: -800, perp_volume: 4000 },
-  { date: "2024-01-05", pnl: 2000, perp_volume: 6000 },
+  { date: "2024-01-01", yoyoyo: 1000, perp_volume: 5000 },
+  { date: "2024-01-02", yoyoyo: -500, perp_volume: 3000 },
+  { date: "2024-01-03", yoyoyo: 1500, perp_volume: 7000 },
+  { date: "2024-01-04", yoyoyo: -800, perp_volume: 4000 },
+  { date: "2024-01-05", yoyoyo: 2000, perp_volume: 6000 },
 ];
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
@@ -52,13 +52,15 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       }}
     >
       <h1 style={{ color: "white", padding: "20px" }}>Bar Chart Demo</h1>
-      <BarChart axisFontSize={14} data={testData} type="PnL" height={"300px"} />
+
+      <BarChart data={testData} type="pnl" height="300px" />
+
       <h1 style={{ color: "white", padding: "20px", marginTop: "100px" }}>
         Line Chart Demo
       </h1>
       <LineChart
         data={lineData}
-        type="PnL"
+        type="yoYOyo"
         linePositiveColor="rgb(255, 140, 0)"
         lineNegativeColor="rgb(0, 122, 255)"
         fillPositiveColor="rgba(255, 140, 0, 0.2)"

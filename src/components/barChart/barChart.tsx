@@ -5,7 +5,7 @@ import { ChartProps } from "../../types";
 
 export const BarChart = ({
   data,
-  type,
+  type: typeBuffer,
   // Dimensions
   height = "177px",
 
@@ -42,6 +42,7 @@ export const BarChart = ({
   enableAnimation = true,
   animationDuration = 750,
 }: ChartProps) => {
+  const type = typeBuffer.toLocaleLowerCase();
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
 
@@ -109,8 +110,10 @@ export const BarChart = ({
           {
             label: type,
             data: chartData,
-            backgroundColor: chartData.map((value) => getBarColor(value)),
-            borderColor: chartData.map((value) => getBarColor(value)),
+            backgroundColor: chartData.map((value) =>
+              getBarColor(value as number)
+            ),
+            borderColor: chartData.map((value) => getBarColor(value as number)),
             borderWidth: barBorderWidth,
             borderRadius: barBorderRadius,
           },
